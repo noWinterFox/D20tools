@@ -9,6 +9,7 @@ public class DiceRoller : IDiceRoller
     public int Roll(int diceCount, int diceSides)
     {
         if (diceCount > 10000) throw new ArgumentOutOfRangeException(nameof(diceCount), "Number of dice rolled cannot exceed 10,000");
+        if (diceSides > 10000) throw new ArgumentOutOfRangeException(nameof(diceSides), "Number of sides must be less than 10,000");
         if (diceCount <= 0) throw new ArgumentOutOfRangeException(nameof(diceCount), "Number of dice must be greater than 0");
         if (diceSides <= 0) throw new ArgumentOutOfRangeException(nameof(diceSides), "Number of sides must be greater than 0");
         

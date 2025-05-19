@@ -58,4 +58,17 @@ public class DiceRollerShould
         Assert.Equal("diceCount", exception.ParamName);
         Assert.Contains("Number of dice rolled cannot exceed 10,000", exception.Message);
     }
+    
+    [Theory]
+    [InlineData(1, 10001)]
+    public void ThrowExceptionForDiceSidesExceedingUpperLimit(int diceCount, int diceSides)
+    {
+        IDiceRoller diceRoller = new DiceRoller();
+        
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => diceRoller.Roll(diceCount, diceSides));
+        
+        Assert.Equal("diceSides", exception.ParamName);
+        Assert.Contains("Number of sides must be less than 10,000", exception.Message);
+    }
+    
 }
